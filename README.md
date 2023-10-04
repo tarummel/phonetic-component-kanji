@@ -4,31 +4,26 @@
 
 ## Project Description
 
-This repo attempts to programmatically generate all phonetic component and "semantic component" sets for roughly ~6900 
-kanji. Technical details below. If you don't know what that is but you've studied kanji before, chances are you've seen 
-this phenomena already maybe without realizing it.
+This repo attempts to programmatically generate all phonetic component sets, including "semantic" component sets for 
+roughly ~6900 kanji. The final result can be found in any of the  `phonetic-component-kanji` files with additional technical
+details provided below along with examples and explanations.
 
-## Background Information
+## Background Overview
 
-To start, we need a quick lesson on the Chinese language. Japanese derives form Chinese. Chinese hanji are logograms 
-or symbols that represent something. They do NOT represent a sound like in English alphabet. Instead of creating
-a new sound for each hanzi, which would be impractical, they utilized **phonetic** and **semantic** component hints.
-These hints, when known, can be interpreted to help guide our understanding of these characters. Flashback lesson over.
+To start, we need a quick lesson on the Chinese language. Japanese derives from Chinese after all. Chinese hanzi and kanji
+are "logograms" or symbols that represent some *thing*. They do NOT represent a sound like in the English alphabet. Instead of
+creating a new sound for each symbol, which would be impractical given how many there were, ancient Chinese utilized 
+**phonetic** and **semantic** components to instead *embed* the pronunciation and meaning into the character.
 
-The criteria of a **phonetic component** is:
-- they share at least one phonetic on'yomi reading
-- they share a component (the original kanji being compared against)
+Now within the context of Japanese / this project, the criteria for a **phonetic component** kanji is:
 
-A **phonetic component** (**phono_component_set** in the file) value manifests when other phonetic components of the same
-family are grouped together. By identifying the baser kanji it is possible to learn a whole group of kanji's on'yomi 
-reading.
+- they share at least one phonetic on'yomi reading with another kanji
+- that kanji includes this kanji
 
-A **semantic component** (**component_only_set** in the file) is any kanji that only shares the component. A kanji that 
-fails the first criteria above falls into this set BUT sharing a component and sharing a kanji is more nuanced then that.
-Example 3 below shows off the semantic component value when applicable.
+A **phonetic component** value therefore manifests when other phonetic components of the same "family" are grouped together. 
+Learning these specific kanji allows us to assign the on'yomi reading to a whole group of kanji at once.
 
-But before you look at the examples. I recomend taking a look at the Content section if you haven't already. Familiarize
-yourself as they'll be 
+A **semantic component** are therefore the kanji who meet the second criteria but NOT the first.
 
 ## Examples
 
@@ -38,13 +33,13 @@ yourself as they'll be
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | kou |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |     |
 
-Shown above is 交's entry. Each column is either itself (added for your convenience) plus the kanji from the 
-entry's **phono-component** and **component only** sets. With a row for each on'yomi reading in the entry (just "kou" in
-this case). With "O" marks denoting a phonetic-component match. 
+Shown above is 交's entry (table not normally included). Each column is either itself (added for your convenience) or the
+kanji from the entry's `phono_component_sets` and `component_only_set`. One row for each on'yomi reading in the entry 
+(just "kou" in this case). "O" marks denote a phonetic-component match. 
 
-Notice how nearly every kanji is a match. What this means is that any time you see 交 in a kanji 
-you can immediately determine its on'yomi pronunciation must be "kou". That hint is what it means to be a phonetic 
-component. As for the exception 駮, conveniently its an archaic non-Jouyou kanji and so unimportant.
+Notice how nearly every kanji is a phonetic-component match? It's essentially this, any time you see 交 in a kanji you now
+know its on'yomi pronunciation is "kou". 交 is a *very* reliable phonetic component. Meaning it really is that easy. The 
+exception 駮 conveniently is an archaic, non-Jouyou kanji and can be safely ignored.
 
 ### Example 2: Normal Case
 
@@ -53,13 +48,14 @@ component. As for the exception 駮, conveniently its an archaic non-Jouyou kanj
 | sei  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |     |     |     |     |     |     |     |
 | shou |  O  |     |     |     |  O  |  O  |  O  |  O  |  O  |  O  |  O  |     |     |     |     |     |     |     |
 
-Here's a more average example. Not all kanji are created equally. We see here a some trends but also a lot of exception.
-Personally I don't recommend memorizing every kanji, every reading and every exception. It's simply too much. Instead, 
-being mindful of these patterns as you learn kanji can be extremely useful and is the whole reason for ~this~ to begin 
-with. If you want to be pro-active, checking out the biggest, most reliable kanji in ths data set should be your next 
-move.
+Here's an example of what you'll usually see, which is low reliability. Unfortunately not all kanji are created equally. 
+There are trends but there's also a lot of exceptions. Personally I don't recommend memorizing every kanji, reading and 
+exception. Instead, being mindful of these patterns and their existance as you continue learning is what's important. It's 
+half the reason for all ~this~ to begin with. If you want to be pro-active, checking out the biggest, most reliable kanji in
+the files should be your next move. Prioritizing the "best" kanji is probably the most efficient use of one's time. Which
+is kind of the whole other point for this project!
 
-### Example: Anti-Pattern or Semantic Component?
+### Example 3: Semantic Component
 
 |     | 金  |  鈞  | 釿  | 錦  |  欽  | 欽  | 淦  |  鍾  | 瀏  | 鐔  |  鎬  | 鎹  | 鎧  |  鋳  | 鈑  | 鋲  |  鐃  | 鍬  |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -67,45 +63,42 @@ move.
 | kon |  O  |     |     |     |  O  |  O  |     |     |     |     |     |     |     |     |     |     |     |     |
 | gon |  O  |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |
 
-Let's go over a potential anti-pattern like 金. It has 160 matches in total and the 5 above are only phonetic matches 
-(or about 3%). It's looks like the exact opposite of example 1. But bear with me.
+Let's go over a semantic component like 金. It has 160 matches in total and the 5 above are only phonetic matches (or about
+3%). It sorta looks like the opposite of example 1. What value is there in something so unreliable? Simply take a look at a
+dictionary for details on all the most common matches for 金:
 
-First, consider the idea of a **semantic component**. If **phonetic components** are those that can clue us in on the 
-*pronunciation* of a certain kanji. Then **semantic components** are clues to the *semantic* meaning of a kanji. Check
-out this [Phono-Semantic Compound Character Wikipedia](https://en.wikipedia.org/wiki/Chinese_character_classification#Phono-semantic_compound_characters) page if you want.
+- elemental metals like 銅 (copper), 鉄 (iron) and 鉛 (lead)
+- products made of metal like 針 (needle), 釜 (kettle) and 釣 (fishing)
+- abstract metal concepts like 鋭 (sharp tool, sharp mind) and 鈍 (dull tool, slow-witted) 
 
-Now all we need is Japanese dictionary to complete the puzzle. Consider 金 as a component
-- in elemental metals: 銅 (copper), 鉄 (iron) and 鉛 (lead)
-- in products made of metal: 針 (needle), 釜 (kettle) and 釣 (fishing)
-- and in more abstract metal concepts: 鋭 (sharp tool, sharp mind) and 鈍 (dull tool, slow-witted) 
-
-So in other words, 金 appearence in a kanji suggests a metal-related kanji. 金 is the **semantic component** representing
-metal. Bear in mind that not all component matches imply a greater semantic meaning. Unfortunately finding these
-groups specifically is outside of this project. Instead consider consulting a dictionary.
+Notice that 金's appearence is usually on the left position of each kanji? There's a reason. Traditionally the left
+position for the semantic component, also called the "hen". It is therefore the first place you should look if you're
+searching for a hint. But it's not the only place, like in 釜. This is all to say, 金 is a **semantic component** 
+for/meaning metal. Just bear in mind that for various reasons components only matches may not imply a semantic meaning.
+Always be sure to consult a dictionary!
 
 ## Content
 
-Each `phonetic-component-kanji` file follows the same data structure below. 
+The `phonetic-component-kanji` files all follow the same structure:
 
-| Value Name            | Type                   | Description                                          |
-| --------------------- | ---------------------- | ---------------------------------------------------- |
-| literal               | String                 | string literal kanji                                 |
-| components            | Array<String>          | radicals and kanji parts that form a kanji           | 
-| onyomi*               | Array<String>          | the on'yomi reading(s) of the kanji                  |
-| component_only_set    | Array<String>          | kanji with only a component match                    |
-| phono_component_sets* | Array[Array[String]]   | sets of kanji that share a phono-component           |
-| largest_perfect_set   | Integer                | length of the largest phono-component                |
-| reliability_rating    | Float                  | percent of phono-component over component only kanji |
+| Name                  | Type                   | Description                                           |
+| --------------------- | ---------------------- | ----------------------------------------------------- |
+| literal               | String                 | string literal kanji                                  |
+| components            | Array<String>          | radicals and kanji parts that form a kanji            | 
+| onyomi*               | Array<String>          | the on'yomi reading(s) of the kanji                   |
+| component_only_set    | Array<String>          | kanji with only a component match                     |
+| phono_component_sets* | Array[Array[String]]   | sets of kanji that share a phono-component match      |
+| largest_perfect_set   | Integer                | length of the largest phono-component set             |
+| reliability_rating    | Float                  | percent of phono-component matches out of all matches |
 
-\*`phono_component_sets` is sorted by largest set first then the `onyomi` readings are re-arranged to reflect this 
-pairing by index when there are phono-component kanji.
+\*`phono_component_sets` and `onyomi` use matching indices, sorted by the largest phonetic set first when applicable.
 
 ## File Formats
 
 ### JSON
+
 ```json
 [
-  ...   
   {
       "literal": "句",
       "components": [
@@ -143,16 +136,14 @@ pairing by index when there are phono-component kanji.
       "largest_phonetic_set_size": 10,
       "reliability_rating": 0.556
   },
-  ...
 ]
 ```
-Note: The JSON root is a JSON Array (of JSON entries)
 
 ### XML
+
 ```xml
 <?xml version='1.0' encoding='UTF-8'?>
 <kspc>
-  ...
   <character>
     <literal>玉</literal>
     <components>
@@ -179,7 +170,6 @@ Note: The JSON root is a JSON Array (of JSON entries)
     <largestPhoneticSetSize>1</largestPhoneticSetSize>
     <reliabilityRating>0.1</reliabilityRating>
   </character>
-  ...
 </kspc>
 ```
 
@@ -188,15 +178,15 @@ Notes:
 - The `g` (group) attribute corresponds to the onyomi's reading at that index
 
 ### TVS
+
 ```csv
 literal	components	onyomi	component_only_set	phono_component_sets	largest_phonetic_set_size	reliability_rating
-...
 末	['木', '丿']	['マツ', 'バツ']	[]	[['靺', '沫', '茉', '秣', '抹'], ['靺', '沫', '茉', '秣']]	5	1.0
-...
 ```
 
 ## Credits
+
 kanjidic2.xml is copyright under the [EDRDG licence](http://www.edrdg.org/edrdg/licence.html). 
 KanjiVG's .svgs are copyright of the [KanjiVG Project](http://kanjivg.tagaini.net/)
-Inspired by acm2010's WaniKanji Semantic-Phonetic Composition userscript
+Inspired by acm2010's WaniKani Semantic-Phonetic Composition userscript
 Shoutout to the (now defunct) Nanbanjin Nikki's melboiko and their writings on the topic
