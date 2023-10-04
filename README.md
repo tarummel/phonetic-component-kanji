@@ -5,8 +5,8 @@
 ## Project Description
 
 This repo attempts to programmatically generate all phonetic component sets, including "semantic" component sets for 
-roughly ~6900 kanji. The final result can be found in any of the  `phonetic-component-kanji` files with additional technical
-details provided below along with examples and explanations.
+roughly ~6900 kanji. The final result can be found in any of the  `phonetic-component-kanji` files. Additional technical
+details are below along with examples and explanations to get you started.
 
 ## Background Overview
 
@@ -21,9 +21,11 @@ Now within the context of Japanese / this project, the criteria for a **phonetic
 - that kanji includes this kanji
 
 A **phonetic component** value therefore manifests when other phonetic components of the same "family" are grouped together. 
-Learning these specific kanji allows us to assign the on'yomi reading to a whole group of kanji at once.
+Learning these baser kanji allows you to assign an on'yomi reading to a whole group of kanji at once.
 
-A **semantic component** are therefore the kanji who meet the second criteria but NOT the first.
+A **semantic component** are therefore the kanji who meet the second criteria but NOT the first. While not all component
+matches imply a greater semantic meaning, when it is true, learning these will help you logically group kanji together by
+similar meaning. Example 3 will cover this in more detail.
 
 ## Examples
 
@@ -37,9 +39,9 @@ Shown above is 交's entry (table not normally included). Each column is either 
 kanji from the entry's `phono_component_sets` and `component_only_set`. One row for each on'yomi reading in the entry 
 (just "kou" in this case). "O" marks denote a phonetic-component match. 
 
-Notice how nearly every kanji is a phonetic-component match? It's essentially this, any time you see 交 in a kanji you now
-know its on'yomi pronunciation is "kou". 交 is a *very* reliable phonetic component. Meaning it really is that easy. The 
-exception 駮 conveniently is an archaic, non-Jouyou kanji and can be safely ignored.
+Notice how nearly every kanji is a phonetic-component match? 交 is a *very* reliable phonetic component. Essentially, any
+time you see 交 in a kanji from now on you will now know its on'yomi pronunciation is "kou". The exception 駮 conveniently
+is an archaic, non-Jouyou kanji and can be safely ignored.
 
 ### Example 2: Normal Case
 
@@ -48,12 +50,11 @@ exception 駮 conveniently is an archaic, non-Jouyou kanji and can be safely ign
 | sei  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |  O  |     |     |     |     |     |     |     |
 | shou |  O  |     |     |     |  O  |  O  |  O  |  O  |  O  |  O  |  O  |     |     |     |     |     |     |     |
 
-Here's an example of what you'll usually see, which is low reliability. Unfortunately not all kanji are created equally. 
-There are trends but there's also a lot of exceptions. Personally I don't recommend memorizing every kanji, reading and 
-exception. Instead, being mindful of these patterns and their existance as you continue learning is what's important. It's 
-half the reason for all ~this~ to begin with. If you want to be pro-active, checking out the biggest, most reliable kanji in
-the files should be your next move. Prioritizing the "best" kanji is probably the most efficient use of one's time. Which
-is kind of the whole other point for this project!
+Here's an example of a typical entry with low reliability. Unfortunately not all kanji are created equally. As we can see,
+生 may have trends but there's also a lot of exceptions. Personally I don't recommend memorizing every kanji, reading and 
+exception. Sometimes with kanji you have to pick your battles. Instead, keeping these patterns and their existance in mind
+as you continue learning is what's important. And if you want to be pro-active, please check out the complete data set!
+That's what it's there for!
 
 ### Example 3: Semantic Component
 
@@ -63,19 +64,19 @@ is kind of the whole other point for this project!
 | kon |  O  |     |     |     |  O  |  O  |     |     |     |     |     |     |     |     |     |     |     |     |
 | gon |  O  |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |
 
-Let's go over a semantic component like 金. It has 160 matches in total and the 5 above are only phonetic matches (or about
-3%). It sorta looks like the opposite of example 1. What value is there in something so unreliable? Simply take a look at a
-dictionary for details on all the most common matches for 金:
+Now lets go over a proper semantic component like 金. It has 160 matches in total and the 5 above are only phonetic matches
+(or about 3%). It sorta looks like the opposite of example 1. What value is there in something so unreliable? Simply take a
+look at a dictionary for details on all the most common matches for 金:
 
 - elemental metals like 銅 (copper), 鉄 (iron) and 鉛 (lead)
 - products made of metal like 針 (needle), 釜 (kettle) and 釣 (fishing)
 - abstract metal concepts like 鋭 (sharp tool, sharp mind) and 鈍 (dull tool, slow-witted) 
 
 Notice that 金's appearence is usually on the left position of each kanji? There's a reason. Traditionally the left
-position for the semantic component, also called the "hen". It is therefore the first place you should look if you're
-searching for a hint. But it's not the only place, like in 釜. This is all to say, 金 is a **semantic component** 
-for/meaning metal. Just bear in mind that for various reasons components only matches may not imply a semantic meaning.
-Always be sure to consult a dictionary!
+position *is* the semantic position, also called the "hen". It's the first place you should look at if you're searching
+for a hint. *But* it's not the only place, like in 釜. This is all to say, 金 is a **semantic component** for/meaning metal.
+Just bear in mind that for various reasons components only matches may not imply a semantic meaning. Always be sure to
+consult a dictionary!
 
 ## Content
 
